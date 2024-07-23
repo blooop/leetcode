@@ -27,7 +27,6 @@ public:
 };
 
 TEST(template, test1) {
-
   ASSERT_EQ( Solution().mergeAlternately("abc", "def"),"adbecf");
 }
 
