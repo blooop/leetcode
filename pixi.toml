@@ -8,9 +8,12 @@ platforms = ["linux-64"]
 
 [tasks]
 build = "colcon build"
-cpp-fmt = { cmd = "clang-format -i leetcode/src/*.[hc]pp" }
+clean = "rm -rf build"
+fmt = { cmd = "clang-format -i leetcode/src/*.[hc]pp" }
 cpp-fmt-check = { cmd = "clang-format --dry-run --Werror -i src/*.[hc]pp" }
-test = {cmd= "colcon test; colcon test-result --all", depends-on = ["build"]}
+test = {cmd= "colcon test", depends-on = ["build"]}
+test-verbose = {cmd= "colcon test-result --all", depends-on = ["test"]}
+
 
 [dependencies]
 ros-humble-desktop = ">=0.10.0,<0.11"
@@ -20,3 +23,4 @@ setuptools = "<=58.2.0"
 cmake = "3.27.6"
 clang-tools = ">=15,<16" # clang-format
 cxx-compiler = "1.6.0.*"
+gtest= "1.14.0"
